@@ -1,0 +1,1976 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robinhood 2025年第三季度财报分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'DejaVu Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #ffffff;
+            color: #36454f;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #36454f 0%, #708090 100%);
+            color: #ffffff;
+            margin-bottom: 40px;
+            border-radius: 8px;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #36454f;
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #708090;
+        }
+        
+        h3 {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #36454f;
+            margin: 25px 0 15px 0;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .summary-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .metric-card {
+            background: #f8f9fa;
+            border-left: 4px solid #708090;
+            padding: 20px;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(54, 69, 79, 0.15);
+        }
+        
+        .metric-label {
+            font-size: 0.9em;
+            color: #708090;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .metric-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #36454f;
+            margin-bottom: 5px;
+        }
+        
+        .metric-change {
+            font-size: 0.85em;
+            color: #28a745;
+            font-weight: 600;
+        }
+        
+        .metric-change.negative {
+            color: #dc3545;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 30px 0;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid #d3d3d3;
+        }
+        
+        .highlights {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border-left: 4px solid #36454f;
+        }
+        
+        .highlights ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .highlights li {
+            padding: 10px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .highlights li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #708090;
+            font-weight: bold;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .data-table thead {
+            background: #36454f;
+            color: white;
+        }
+        
+        .data-table th,
+        .data-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #d3d3d3;
+        }
+        
+        .data-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .data-table th {
+            font-weight: bold;
+            font-size: 0.95em;
+        }
+        
+        .source {
+            margin-top: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-size: 0.9em;
+            color: #708090;
+        }
+        
+        .source strong {
+            color: #36454f;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .chart-container {
+                page-break-inside: avoid;
+                height: 350px;
+            }
+            
+            h2 {
+                page-break-after: avoid;
+            }
+            
+            .metric-card {
+                page-break-inside: avoid;
+            }
+            
+            header {
+                background: #36454f !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            h2 {
+                font-size: 1.4em;
+            }
+            
+            .chart-container {
+                height: 300px;
+            }
+            
+            .metric-value {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Robinhood Markets, Inc.</h1>
+            <p class="subtitle">2025年第三季度财报分析报告</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">报告日期: 2025年11月6日</p>
+        </header>
+
+        <section>
+            <h2>核心业绩指标</h2>
+            <div class="summary-section">
+                <div class="metric-card">
+                    <div class="metric-label">营业收入</div>
+                    <div class="metric-value">$12.7亿</div>
+                    <div class="metric-change">同比增长 +100%</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">每股收益 (EPS)</div>
+                    <div class="metric-value">$0.61</div>
+                    <div class="metric-change">同比增长 +259%</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">净利润</div>
+                    <div class="metric-value">$5.56亿</div>
+                    <div class="metric-change">同比增长 +271%</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">活跃用户数</div>
+                    <div class="metric-value">2,680万</div>
+                    <div class="metric-change">同比增长 +10%</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Rule of 40 分析</h2>
+            <div class="highlights">
+                <p style="font-size: 1.1em; margin-bottom: 15px;">
+                    <strong>Rule of 40</strong>是衡量高增长公司健康度的关键指标，要求收入增长率与利润率之和达到或超过40%。
+                </p>
+            </div>
+            
+            <div class="summary-section">
+                <div class="metric-card">
+                    <div class="metric-label">同比收入增长率</div>
+                    <div class="metric-value">100%</div>
+                    <div class="metric-change">Q3 2025 vs Q3 2024</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">净利润率</div>
+                    <div class="metric-value">43.7%</div>
+                    <div class="metric-change">$556M / $1,274M</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Rule of 40 得分</div>
+                    <div class="metric-value" style="color: #28a745;">143.7%</div>
+                    <div class="metric-change">远超健康基准线</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">调整后EBITDA利润率</div>
+                    <div class="metric-value">56%</div>
+                    <div class="metric-change">行业领先水平</div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="ruleOf40Chart"></canvas>
+            </div>
+
+            <div class="highlights">
+                <h3 style="margin-top: 0;">Rule of 40 评估</h3>
+                <ul>
+                    <li><strong>卓越表现</strong>: Robinhood的Rule of 40得分达到<strong>143.7%</strong>，远超40%的健康基准线</li>
+                    <li><strong>增长与盈利兼顾</strong>: 在保持100%收入增长的同时，净利润率达到43.7%，展现强大的商业模式</li>
+                    <li><strong>运营效率</strong>: 调整后EBITDA利润率56%，显示公司在高速增长中保持良好的成本控制</li>
+                    <li><strong>可持续性</strong>: 虽然100%增长率难以长期维持，但高利润率为未来增长放缓提供缓冲</li>
+                    <li><strong>行业对比</strong>: 在金融科技行业中处于顶尖水平，远超大多数同行</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>业绩亮点</h2>
+            <div class="highlights">
+                <ul>
+                    <li>第三季度营收达到<strong>12.7亿美元</strong>,超出华尔街预期的11.9亿美元,同比翻倍增长</li>
+                    <li>每股收益<strong>$0.61</strong>,超出分析师预期的$0.53,创公司历史第二高盈利季度</li>
+                    <li>交易收入增长<strong>129%</strong>,其中加密货币交易收入暴增<strong>300%以上</strong></li>
+                    <li>期权交易收入增长<strong>50%以上</strong>,显示用户交易活跃度持续提升</li>
+                    <li>净利息收入同比增长<strong>66%</strong>至4.56亿美元,受益于高利率环境</li>
+                    <li>Robinhood Gold订阅用户达到<strong>390万</strong>,同比增长77%</li>
+                    <li>平均每用户收入(ARPU)达到<strong>$191</strong>,同比增长82%</li>
+                    <li>预测市场(Prediction Markets)业务快速增长,10月单月交易量达25亿份合约</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>营收趋势分析</h2>
+            <div class="chart-container">
+                <canvas id="revenueChart"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>每股收益趋势</h2>
+            <div class="chart-container">
+                <canvas id="epsChart"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>第三季度收入结构</h2>
+            <div class="chart-container">
+                <canvas id="revenueBreakdownChart"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>用户增长指标</h2>
+            <div class="chart-container">
+                <canvas id="userGrowthChart"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>季度财务数据对比</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>财务指标</th>
+                        <th>2025 Q1</th>
+                        <th>2025 Q2</th>
+                        <th>2025 Q3</th>
+                        <th>季度环比</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>营业收入</strong></td>
+                        <td>$9.27亿</td>
+                        <td>$9.89亿</td>
+                        <td>$12.7亿</td>
+                        <td style="color: #28a745; font-weight: bold;">+28.4%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>净利润</strong></td>
+                        <td>$3.36亿</td>
+                        <td>约$3.85亿</td>
+                        <td>$5.56亿</td>
+                        <td style="color: #28a745; font-weight: bold;">+44.4%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>每股收益</strong></td>
+                        <td>$0.37</td>
+                        <td>$0.42</td>
+                        <td>$0.61</td>
+                        <td style="color: #28a745; font-weight: bold;">+45.2%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>活跃用户数</strong></td>
+                        <td>~2,400万</td>
+                        <td>~2,430万</td>
+                        <td>2,680万</td>
+                        <td style="color: #28a745; font-weight: bold;">+10.3%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gold订阅用户</strong></td>
+                        <td>~3.0万</td>
+                        <td>350万</td>
+                        <td>390万</td>
+                        <td style="color: #28a745; font-weight: bold;">+11.4%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ARPU</strong></td>
+                        <td>约$140</td>
+                        <td>$151</td>
+                        <td>$191</td>
+                        <td style="color: #28a745; font-weight: bold;">+26.5%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>详细财务比率分析</h2>
+            
+            <h3>盈利能力指标</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>盈利指标</th>
+                        <th>2025 Q1</th>
+                        <th>2025 Q2</th>
+                        <th>2025 Q3</th>
+                        <th>趋势</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>净利润率</strong></td>
+                        <td>36.2%</td>
+                        <td>38.9%</td>
+                        <td>43.7%</td>
+                        <td style="color: #28a745;">↑ 持续改善</td>
+                    </tr>
+                    <tr>
+                        <td><strong>毛利率</strong></td>
+                        <td>约82%</td>
+                        <td>约83%</td>
+                        <td>约84%</td>
+                        <td style="color: #28a745;">↑ 稳定增长</td>
+                    </tr>
+                    <tr>
+                        <td><strong>运营利润率</strong></td>
+                        <td>约40%</td>
+                        <td>约43%</td>
+                        <td>约48%</td>
+                        <td style="color: #28a745;">↑ 显著提升</td>
+                    </tr>
+                    <tr>
+                        <td><strong>调整后EBITDA率</strong></td>
+                        <td>约50%</td>
+                        <td>56%</td>
+                        <td>56%+</td>
+                        <td style="color: #28a745;">→ 保持高位</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ROE (年化)</strong></td>
+                        <td>约45%</td>
+                        <td>约48%</td>
+                        <td>约52%</td>
+                        <td style="color: #28a745;">↑ 强劲回报</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>增长与效率指标</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>增长指标</th>
+                        <th>2025 Q1</th>
+                        <th>2025 Q2</th>
+                        <th>2025 Q3</th>
+                        <th>同比变化</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>收入同比增长率</strong></td>
+                        <td>50%</td>
+                        <td>45%</td>
+                        <td>100%</td>
+                        <td style="color: #28a745;">加速增长</td>
+                    </tr>
+                    <tr>
+                        <td><strong>用户同比增长率</strong></td>
+                        <td>约8%</td>
+                        <td>约9%</td>
+                        <td>10%</td>
+                        <td style="color: #28a745;">稳定增长</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ARPU同比增长率</strong></td>
+                        <td>约40%</td>
+                        <td>34%</td>
+                        <td>82%</td>
+                        <td style="color: #28a745;">大幅提升</td>
+                    </tr>
+                    <tr>
+                        <td><strong>平台资产 (AUC)</strong></td>
+                        <td>约$2,200亿</td>
+                        <td>约$2,430亿</td>
+                        <td>约$2,800亿+</td>
+                        <td style="color: #28a745;">快速增长</td>
+                    </tr>
+                    <tr>
+                        <td><strong>净存款 (季度)</strong></td>
+                        <td>约$110亿</td>
+                        <td>$138亿</td>
+                        <td>$204亿</td>
+                        <td style="color: #28a745;">创纪录增长</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>运营效率指标</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>效率指标</th>
+                        <th>2025 Q1</th>
+                        <th>2025 Q2</th>
+                        <th>2025 Q3</th>
+                        <th>分析</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>运营费用占收入比</strong></td>
+                        <td>60%</td>
+                        <td>57%</td>
+                        <td>约52%</td>
+                        <td style="color: #28a745;">效率提升</td>
+                    </tr>
+                    <tr>
+                        <td><strong>每用户获客成本效率</strong></td>
+                        <td>改善中</td>
+                        <td>优化中</td>
+                        <td>显著提升</td>
+                        <td style="color: #28a745;">有机增长</td>
+                    </tr>
+                    <tr>
+                        <td><strong>员工人均收入</strong></td>
+                        <td>增长中</td>
+                        <td>持续增长</td>
+                        <td>大幅提升</td>
+                        <td style="color: #28a745;">生产力提高</td>
+                    </tr>
+                    <tr>
+                        <td><strong>技术基础设施效率</strong></td>
+                        <td>良好</td>
+                        <td>优秀</td>
+                        <td>卓越</td>
+                        <td style="color: #28a745;">规模效应</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="chart-container">
+                <canvas id="profitabilityChart"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>收入结构深度分析</h2>
+            
+            <h3>交易收入细分 (Q3 2025: $730M)</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>交易类型</th>
+                        <th>季度收入估算</th>
+                        <th>同比增长</th>
+                        <th>占交易收入比重</th>
+                        <th>关键驱动因素</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>加密货币交易</strong></td>
+                        <td>约$300M+</td>
+                        <td style="color: #28a745; font-weight: bold;">+300%+</td>
+                        <td>约41%</td>
+                        <td>比特币价格上涨、Bitstamp整合</td>
+                    </tr>
+                    <tr>
+                        <td><strong>期权交易</strong></td>
+                        <td>约$250M+</td>
+                        <td style="color: #28a745; font-weight: bold;">+50%+</td>
+                        <td>约34%</td>
+                        <td>指数期权增长60%、活跃交易者增加</td>
+                    </tr>
+                    <tr>
+                        <td><strong>股票交易</strong></td>
+                        <td>约$140M</td>
+                        <td style="color: #28a745; font-weight: bold;">+35%</td>
+                        <td>约19%</td>
+                        <td>交易量创纪录、市场波动性</td>
+                    </tr>
+                    <tr>
+                        <td><strong>预测市场合约</strong></td>
+                        <td>约$40M</td>
+                        <td style="color: #28a745; font-weight: bold;">新业务</td>
+                        <td>约6%</td>
+                        <td>10月交易量25亿份、政治事件催化</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>净利息收入分析 (Q3 2025: $456M)</h3>
+            <div class="highlights">
+                <ul>
+                    <li><strong>同比增长66%</strong>: 受益于高利率环境和资产规模扩大</li>
+                    <li><strong>利息赚取资产增长</strong>: Gold现金余额超过$300亿，较Q2增长50%</li>
+                    <li><strong>净利息利润率 (NIM)</strong>: 从Q2的2.78%提升至Q3的2.85%</li>
+                    <li><strong>保证金余额创纪录</strong>: 用户保证金借贷达到历史新高</li>
+                    <li><strong>证券借贷</strong>: 证券借贷业务持续增长，贡献稳定收入</li>
+                    <li><strong>利率敏感性</strong>: 每降息25个基点，年化NII预计减少$25-30M</li>
+                </ul>
+            </div>
+
+            <h3>其他收入来源 (Q3 2025: $88M)</h3>
+            <div class="summary-section">
+                <div class="metric-card">
+                    <div class="metric-label">Gold订阅收入</div>
+                    <div class="metric-value">主要构成</div>
+                    <div class="metric-change">390万订阅用户</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">同比增长率</div>
+                    <div class="metric-value">+100%</div>
+                    <div class="metric-change">订阅用户增长77%</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">渗透率</div>
+                    <div class="metric-value">14.6%</div>
+                    <div class="metric-change">3.9M / 26.8M用户</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">月费</div>
+                    <div class="metric-value">$5</div>
+                    <div class="metric-change">或$50/年</div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="revenueCompositionTrendChart"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>用户指标深度分析</h2>
+            
+            <h3>用户增长与质量</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>用户指标</th>
+                        <th>2025 Q1</th>
+                        <th>2025 Q2</th>
+                        <th>2025 Q3</th>
+                        <th>同比变化</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>活跃资金用户</strong></td>
+                        <td>2,400万</td>
+                        <td>2,430万</td>
+                        <td>2,680万</td>
+                        <td style="color: #28a745;">+10% YoY</td>
+                    </tr>
+                    <tr>
+                        <td><strong>月活跃用户 (MAU)</strong></td>
+                        <td>约1,240万</td>
+                        <td>约1,280万</td>
+                        <td>约1,330万</td>
+                        <td style="color: #28a745;">+8% YoY</td>
+                    </tr>
+                    <tr>
+                        <td><strong>每用户平均资产</strong></td>
+                        <td>约$9,200</td>
+                        <td>约$10,000</td>
+                        <td>约$10,450</td>
+                        <td style="color: #28a745;">+近100% YoY</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gold订阅用户</strong></td>
+                        <td>300万</td>
+                        <td>350万</td>
+                        <td>390万</td>
+                        <td style="color: #28a745;">+77% YoY</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gold渗透率</strong></td>
+                        <td>12.5%</td>
+                        <td>14.4%</td>
+                        <td>14.6%</td>
+                        <td style="color: #28a745;">持续提升</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Robinhood Retirement AUC</strong></td>
+                        <td>约$180亿</td>
+                        <td>$200亿+</td>
+                        <td>约$230亿</td>
+                        <td style="color: #28a745;">+50% YTD</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ARPU (季度)</strong></td>
+                        <td>$140</td>
+                        <td>$151</td>
+                        <td>$191</td>
+                        <td style="color: #28a745;">+82% YoY</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>用户参与度指标</h3>
+            <div class="highlights">
+                <ul>
+                    <li><strong>交易活跃度创新高</strong>: 股票、期权、加密货币、期货等所有品类交易量均创纪录</li>
+                    <li><strong>活跃交易者增长</strong>: 高价值活跃交易者群体持续扩大，ARPU显著提升</li>
+                    <li><strong>多产品使用率</strong>: 用户平均使用产品数量增加，交叉销售成效显著</li>
+                    <li><strong>国际用户拓展</strong>: Bitstamp带来约60万国际用户，欧洲业务覆盖30个国家</li>
+                    <li><strong>留存率改善</strong>: 用户留存率持续提升，流失率下降</li>
+                    <li><strong>新用户质量</strong>: 新用户中35%订阅Gold，显示高质量获客</li>
+                </ul>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="arpuVsUsersChart"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>竞争地位与市场份额</h2>
+            
+            <h3>行业地位</h3>
+            <div class="highlights">
+                <ul>
+                    <li><strong>零售交易龙头</strong>: 在美国零售投资平台中市场份额持续扩大</li>
+                    <li><strong>加密货币领先</strong>: 零售加密货币交易量行业领先，Bitstamp加强全球地位</li>
+                    <li><strong>期权交易增长</strong>: 指数期权和期货产品快速增长，吸引活跃交易者</li>
+                    <li><strong>预测市场创新</strong>: 率先推出监管合规的预测市场产品，占据先发优势</li>
+                    <li><strong>年轻用户主导</strong>: 在千禧一代和Z世代投资者中渗透率最高</li>
+                </ul>
+            </div>
+
+            <h3>竞争优势</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>竞争维度</th>
+                        <th>Robinhood优势</th>
+                        <th>主要竞争对手</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>用户体验</strong></td>
+                        <td>移动优先、界面简洁、零佣金</td>
+                        <td>传统券商用户体验复杂</td>
+                    </tr>
+                    <tr>
+                        <td><strong>产品创新</strong></td>
+                        <td>快速迭代、预测市场、AI工具</td>
+                        <td>创新速度较慢</td>
+                    </tr>
+                    <tr>
+                        <td><strong>技术平台</strong></td>
+                        <td>云原生、高可用、低成本</td>
+                        <td>传统IT架构负担重</td>
+                    </tr>
+                    <tr>
+                        <td><strong>品牌影响力</strong></td>
+                        <td>年轻群体首选、社区活跃</td>
+                        <td>品牌老化、用户年龄偏大</td>
+                    </tr>
+                    <tr>
+                        <td><strong>国际扩张</strong></td>
+                        <td>通过Bitstamp进入欧洲、股票代币化</td>
+                        <td>国际业务受限于监管</td>
+                    </tr>
+                    <tr>
+                        <td><strong>盈利能力</strong></td>
+                        <td>净利润率43.7%，行业领先</td>
+                        <td>大部分竞争对手利润率较低</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>业务发展动态</h2>
+            <h3>新业务线拓展</h3>
+            <div class="highlights">
+                <ul>
+                    <li><strong>预测市场 (Prediction Markets)</strong>: 第三季度交易量超过23亿份合约,环比翻倍增长;10月单月达到25亿份</li>
+                    <li><strong>Bitstamp收购</strong>: 完成对Bitstamp的收购,新增约60万国际用户,年化收入贡献约1亿美元</li>
+                    <li><strong>Robinhood Banking</strong>: 计划于2025年秋季推出,进一步扩大金融服务范围</li>
+                    <li><strong>Robinhood Legend</strong>: 高级交易平台持续更新,提升活跃交易者体验</li>
+                </ul>
+            </div>
+
+            <h3>管理层变动</h3>
+            <div class="highlights">
+                <ul>
+                    <li>首席财务官Jason Warnick宣布将于2026年第一季度退休</li>
+                    <li>Robinhood资深财务高管Shiv Verma将接任CFO职位</li>
+                    <li>Warnick将继续担任战略顾问至2026年9月1日,确保平稳过渡</li>
+                </ul>
+            </div>
+        </section>
+
+        </section>
+
+        <section>
+            <h2>资本配置与股东回报</h2>
+            
+            <h3>股票回购计划</h3>
+            <div class="summary-section">
+                <div class="metric-card">
+                    <div class="metric-label">Q3回购金额</div>
+                    <div class="metric-value">未披露</div>
+                    <div class="metric-change">预计持续执行</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">过去12个月回购</div>
+                    <div class="metric-value">$7.03亿</div>
+                    <div class="metric-change">2,100万股 @ $34.24</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">授权回购额度</div>
+                    <div class="metric-value">$15亿</div>
+                    <div class="metric-change">Q1 2025增加$5亿</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">剩余授权额度</div>
+                    <div class="metric-value">约$8亿+</div>
+                    <div class="metric-change">充足回购空间</div>
+                </div>
+            </div>
+
+            <h3>财务健康度</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>财务指标</th>
+                        <th>2025 Q2</th>
+                        <th>2025 Q3</th>
+                        <th>评估</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>现金及现金等价物</strong></td>
+                        <td>$42亿</td>
+                        <td>预计$45亿+</td>
+                        <td style="color: #28a745;">流动性充足</td>
+                    </tr>
+                    <tr>
+                        <td><strong>运营现金流 (季度)</strong></td>
+                        <td>强劲</td>
+                        <td>创纪录</td>
+                        <td style="color: #28a745;">自由现金流充沛</td>
+                    </tr>
+                    <tr>
+                        <td><strong>负债比率</strong></td>
+                        <td>极低</td>
+                        <td>极低</td>
+                        <td style="color: #28a745;">轻资产模式</td>
+                    </tr>
+                    <tr>
+                        <td><strong>监管资本充足率</strong></td>
+                        <td>远超要求</td>
+                        <td>远超要求</td>
+                        <td style="color: #28a745;">监管合规</td>
+                    </tr>
+                    <tr>
+                        <td><strong>资本回报能力</strong></td>
+                        <td>优秀</td>
+                        <td>卓越</td>
+                        <td style="color: #28a745;">高ROE、高ROIC</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>资本配置策略</h3>
+            <div class="highlights">
+                <ul>
+                    <li><strong>股票回购</strong>: 持续回购彰显管理层对未来增长的信心，优化资本结构</li>
+                    <li><strong>战略收购</strong>: 完成TradePMR和Bitstamp收购，扩大业务边界和国际影响力</li>
+                    <li><strong>产品投资</strong>: 持续投入研发，推出预测市场、Robinhood Banking等创新产品</li>
+                    <li><strong>基础设施</strong>: 投资技术平台和数据中心，支撑业务规模化增长</li>
+                    <li><strong>国际扩张</strong>: 布局欧洲和亚洲市场（WonderFi收购待完成），实现全球化</li>
+                    <li><strong>保持灵活性</strong>: 强劲现金流和低负债为未来机会保留充足弹药</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>风险因素深度剖析</h2>
+            
+            <h3>宏观经济与市场风险</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>风险类别</th>
+                        <th>具体风险</th>
+                        <th>潜在影响</th>
+                        <th>应对措施</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>利率风险</strong></td>
+                        <td>美联储持续降息</td>
+                        <td>净利息收入减少，每降25bp影响$25-30M年化NII</td>
+                        <td>多元化收入来源，扩大保证金贷款业务</td>
+                    </tr>
+                    <tr>
+                        <td><strong>市场波动性</strong></td>
+                        <td>交易量下降</td>
+                        <td>交易收入占比57%，波动性降低影响显著</td>
+                        <td>培养长期投资用户，增加订阅收入</td>
+                    </tr>
+                    <tr>
+                        <td><strong>经济衰退</strong></td>
+                        <td>用户可支配收入减少</td>
+                        <td>净存款下降，用户活跃度降低</td>
+                        <td>提供多样化金融产品，增强用户粘性</td>
+                    </tr>
+                    <tr>
+                        <td><strong>加密货币价格</strong></td>
+                        <td>比特币等大幅回调</td>
+                        <td>加密交易收入占比41%，价格下跌影响交易量</td>
+                        <td>扩展加密产品线，Bitstamp增强全球业务</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>监管与合规风险</h3>
+            <div class="highlights">
+                <ul>
+                    <li><strong>预测市场监管</strong>: CFTC对预测市场的监管态度可能变化，影响这一快速增长业务</li>
+                    <li><strong>证券监管</strong>: SEC对零佣金模式和订单流付款 (PFOF) 的审查持续</li>
+                    <li><strong>加密货币监管</strong>: 全球各国对加密货币监管政策不统一，合规成本上升</li>
+                    <li><strong>国际扩张合规</strong>: 欧洲MiCA法规、各国反洗钱要求增加运营复杂度</li>
+                    <li><strong>历史罚款</strong>: 过去的监管处罚虽已解决，但需持续加强合规体系</li>
+                    <li><strong>潜在诉讼</strong>: 作为行业领导者，面临用户和监管方诉讼风险</li>
+                </ul>
+            </div>
+
+            <h3>竞争与运营风险</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>风险领域</th>
+                        <th>主要挑战</th>
+                        <th>风险等级</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>传统券商反击</strong></td>
+                        <td>Schwab、Fidelity等改进移动应用和产品</td>
+                        <td style="color: #ffc107;">中等</td>
+                    </tr>
+                    <tr>
+                        <td><strong>新兴竞争者</strong></td>
+                        <td>其他金融科技公司推出类似产品</td>
+                        <td style="color: #ffc107;">中等</td>
+                    </tr>
+                    <tr>
+                        <td><strong>技术系统风险</strong></td>
+                        <td>交易高峰期系统稳定性、网络安全威胁</td>
+                        <td style="color: #ffc107;">中等</td>
+                    </tr>
+                    <tr>
+                        <td><strong>网络安全</strong></td>
+                        <td>黑客攻击、数据泄露风险</td>
+                        <td style="color: #dc3545;">较高</td>
+                    </tr>
+                    <tr>
+                        <td><strong>人才竞争</strong></td>
+                        <td>科技人才争夺激烈，关键人员流失</td>
+                        <td style="color: #ffc107;">中等</td>
+                    </tr>
+                    <tr>
+                        <td><strong>产品风险</strong></td>
+                        <td>新产品（预测市场）接受度不确定</td>
+                        <td style="color: #28a745;">较低</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>估值与股价风险</h3>
+            <div class="highlights">
+                <ul>
+                    <li><strong>高估值倍数</strong>: 股价年内涨幅超280%，市盈率和市销率处于历史高位</li>
+                    <li><strong>预期过高</strong>: 市场对未来增长预期很高，任何业绩不及预期可能导致大幅回调</li>
+                    <tr><strong>增长可持续性</strong>: 100%收入增长难以长期维持，增长放缓可能引发估值重估</li>
+                    <li><strong>散户投资者占比</strong>: 股东结构中散户占比较高，股价波动性较大</li>
+                    <li><strong>做空压力</strong>: 高涨幅和高估值吸引做空者，空头兴趣较高</li>
+                    <li><strong>宏观环境变化</strong>: 利率、政策变化可能导致科技成长股整体估值压缩</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>未来展望与战略方向</h2>
+            
+            <h3>2025-2026年战略重点</h3>
+            <div class="highlights">
+                <h4>产品创新</h4>
+                <ul>
+                    <li><strong>Robinhood Banking</strong>: 2025年秋季推出，提供支票账户、储蓄账户等银行服务</li>
+                    <li><strong>Robinhood Cortex</strong>: AI驱动的投资工具，包括Stock Digests、Trade Builder等功能</li>
+                    <li><strong>Robinhood Strategies</strong>: 数字化投资顾问服务，已管理资产超$5亿</li>
+                    <li><strong>预测市场扩展</strong>: 扩大体育、娱乐、政治等事件覆盖范围</li>
+                    <li><strong>股票代币化</strong>: 欧洲推出200+美股代币化产品，降低投资门槛</li>
+                    <li><strong>Robinhood Legend增强</strong>: 持续升级专业交易平台，吸引活跃交易者</li>
+                </ul>
+
+                <h4>国际化扩张</h4>
+                <ul>
+                    <li><strong>欧洲深耕</strong>: 通过Bitstamp覆盖30个国家，提供加密和股票代币服务</li>
+                    <li><strong>加拿大市场</strong>: WonderFi收购（待完成）将进入加拿大加密市场</li>
+                    <li><strong>亚洲布局</strong>: 探索亚洲市场机会，特别是加密货币友好地区</li>
+                    <li><strong>产品本地化</strong>: 根据各国监管和用户需求定制产品</li>
+                </ul>
+
+                <h4>用户增长与留存</h4>
+                <ul>
+                    <li><strong>高价值用户培养</strong>: 提升Gold订阅渗透率，从14.6%提升至20%+</li>
+                    <li><strong>活跃交易者生态</strong>: Hood Summit等活动增强社区，Legend平台吸引专业用户</li>
+                    <li><strong>年轻用户渗透</strong>: 继续主导千禧一代和Z世代投资者市场</li>
+                    <li><strong>财富管理服务</strong>: Retirement账户、Strategies等满足用户全生命周期需求</li>
+                </ul>
+
+                <h4>运营效率提升</h4>
+                <ul>
+                    <li><strong>成本控制</strong>: 2025全年调整后运营费用指引$21.5-22.5亿（含Bitstamp）</li>
+                    <li><strong>规模效应</strong>: 用户和资产规模扩大带来边际成本下降</li>
+                    <li><strong>技术投资</strong>: 云基础设施和AI工具提升系统效率</li>
+                    <li><strong>自动化</strong>: 客服、风控等环节提高自动化水平</li>
+                </ul>
+            </div>
+
+            <h3>关键绩效展望</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>指标</th>
+                        <th>2025 Q4预期</th>
+                        <th>2026年展望</th>
+                        <th>关键假设</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>收入增长</strong></td>
+                        <td>环比增长10-15%</td>
+                        <td>同比增长30-50%</td>
+                        <td>市场活跃度保持，新业务贡献</td>
+                    </tr>
+                    <tr>
+                        <td><strong>净利润率</strong></td>
+                        <td>40-45%</td>
+                        <td>38-42%</td>
+                        <td>规模效应 vs 增长投资</td>
+                    </tr>
+                    <tr>
+                        <td><strong>用户增长</strong></td>
+                        <td>达到2,800万</td>
+                        <td>超过3,200万</td>
+                        <td>国际扩张、产品创新</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ARPU</strong></td>
+                        <td>$195-205</td>
+                        <td>$210-230</td>
+                        <td>Gold渗透率提升、新产品</td>
+                    </tr>
+                    <tr>
+                        <td><strong>净存款</strong></td>
+                        <td>全年超$700亿</td>
+                        <td>增长25-35%</td>
+                        <td>用户信任度、产品丰富度</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>长期愿景 (2027-2030)</h3>
+            <div class="highlights">
+                <ul>
+                    <li><strong>超级应用 (Super App)</strong>: 成为用户一站式金融服务平台，覆盖投资、银行、信贷、保险</li>
+                    <li><strong>全球化</strong>: 在北美、欧洲、亚洲主要市场建立领导地位</li>
+                    <li><strong>用户基数</strong>: 活跃用户突破5,000万，其中国际用户占比30%+</li>
+                    <li><strong>产品多元化</strong>: 交易收入占比从57%降至40%，订阅和服务收入占比提升</li>
+                    <li><strong>盈利能力</strong>: 保持40%+净利润率，Rule of 40得分持续超过60分</li>
+                    <li><strong>市场地位</strong>: 巩固全球领先的零售投资平台地位，进入更多金融服务领域</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>投资者关注焦点</h2>
+            <h3>优势因素</h3>
+            <div class="highlights">
+                <ul>
+                    <li><strong>多元化收入来源</strong>: 交易、利息收入、订阅服务等多条业务线协同发展</li>
+                    <li><strong>用户增长强劲</strong>: 活跃用户持续增加,ARPU显著提升</li>
+                    <li><strong>产品创新</strong>: 持续推出新功能和服务,提高用户粘性</li>
+                    <li><strong>国际化扩张</strong>: 通过Bitstamp进入欧洲市场,服务覆盖30个国家</li>
+                    <li><strong>盈利能力提升</strong>: 净利润率和运营效率持续改善</li>
+                </ul>
+            </div>
+
+            <h3>潜在风险</h3>
+            <div class="highlights">
+                <ul>
+                    <li><strong>利率环境变化</strong>: 美联储降息可能影响净利息收入,每降息25个基点将减少年化NII约2,500-3,000万美元</li>
+                    <li><strong>市场波动性</strong>: 交易收入高度依赖市场活跃度和资产价格波动</li>
+                    <li><strong>监管风险</strong>: 预测市场等新业务面临监管不确定性</li>
+                    <li><strong>竞争加剧</strong>: 传统券商和金融科技公司持续改进产品,竞争压力上升</li>
+                    <li><strong>高估值风险</strong>: 股价年内涨幅超280%,市场预期较高</li>
+                </ul>
+            </div>
+        </section>
+
+        </section>
+
+        <section>
+            <h2>综合投资结论</h2>
+            
+            <h3>投资亮点总结</h3>
+            <div class="summary-section">
+                <div class="metric-card" style="border-left-color: #28a745;">
+                    <div class="metric-label">增长动能</div>
+                    <div class="metric-value" style="font-size: 1.3em; color: #28a745;">★★★★★</div>
+                    <div class="metric-change" style="color: #36454f;">收入翻倍，用户ARPU快速提升</div>
+                </div>
+                <div class="metric-card" style="border-left-color: #28a745;">
+                    <div class="metric-label">盈利能力</div>
+                    <div class="metric-value" style="font-size: 1.3em; color: #28a745;">★★★★★</div>
+                    <div class="metric-change" style="color: #36454f;">净利润率43.7%，Rule of 40超143%</div>
+                </div>
+                <div class="metric-card" style="border-left-color: #28a745;">
+                    <div class="metric-label">产品创新</div>
+                    <div class="metric-value" style="font-size: 1.3em; color: #28a745;">★★★★★</div>
+                    <div class="metric-change" style="color: #36454f;">预测市场、AI工具、银行业务</div>
+                </div>
+                <div class="metric-card" style="border-left-color: #28a745;">
+                    <div class="metric-label">市场地位</div>
+                    <div class="metric-value" style="font-size: 1.3em; color: #28a745;">★★★★☆</div>
+                    <div class="metric-change" style="color: #36454f;">零售投资领导者，年轻用户主导</div>
+                </div>
+            </div>
+
+            <div class="highlights">
+                <h4>看多理由</h4>
+                <ul>
+                    <li><strong>卓越的Rule of 40表现</strong>: 143.7%的得分展现增长与盈利的完美结合，远超健康基准</li>
+                    <li><strong>多元化收入来源</strong>: 交易、利息、订阅三大支柱协同发展，降低单一收入依赖</li>
+                    <li><strong>快速的产品创新</strong>: 预测市场、AI工具、银行服务等新产品持续推出，扩大TAM</li>
+                    <li><strong>强大的用户粘性</strong>: ARPU同比增长82%，Gold订阅渗透率持续提升</li>
+                    <li><strong>国际化扩张加速</strong>: Bitstamp进入欧洲30国，WonderFi布局加拿大</li>
+                    <li><strong>充沛的现金流</strong>: 强劲的自由现金流支持股票回购和战略投资</li>
+                    <li><strong>品牌优势</strong>: 在千禧一代和Z世代中拥有强大品牌认知度和忠诚度</li>
+                    <li><strong>技术领先</strong>: 云原生平台、低成本运营、高可扩展性</li>
+                </ul>
+
+                <h4>风险提示</h4>
+                <ul>
+                    <li><strong>估值风险</strong>: 年内涨幅超280%，估值处于历史高位，市场预期很高</li>
+                    <li><strong>利率敏感性</strong>: 美联储降息将影响净利息收入，每降25bp影响$25-30M年化NII</li>
+                    <li><strong>增长可持续性</strong>: 100%收入增长难以长期维持，增速放缓或引发估值调整</li>
+                    <li><strong>监管不确定性</strong>: 预测市场、加密货币等业务面临监管变化风险</li>
+                    <li><strong>市场波动依赖</strong>: 交易收入占比57%，市场活跃度下降将影响业绩</li>
+                    <li><strong>竞争加剧</strong>: 传统券商和金融科技公司持续改进产品，竞争压力上升</li>
+                </ul>
+            </div>
+
+            <h3>不同投资者类型建议</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>投资者类型</th>
+                        <th>适配度</th>
+                        <th>建议策略</th>
+                        <th>关注重点</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>成长型投资者</strong></td>
+                        <td style="color: #28a745; font-weight: bold;">高度适配</td>
+                        <td>可考虑配置，关注估值合理性</td>
+                        <td>用户增长、ARPU提升、新产品推出</td>
+                    </tr>
+                    <tr>
+                        <td><strong>价值型投资者</strong></td>
+                        <td style="color: #ffc107; font-weight: bold;">谨慎评估</td>
+                        <td>等待估值回调或业绩持续验证</td>
+                        <td>市盈率、市销率、FCF收益率</td>
+                    </tr>
+                    <tr>
+                        <td><strong>动量交易者</strong></td>
+                        <td style="color: #28a745; font-weight: bold;">高度适配</td>
+                        <td>关注技术面和交易量变化</td>
+                        <td>股价趋势、成交量、期权活动</td>
+                    </tr>
+                    <tr>
+                        <td><strong>收益型投资者</strong></td>
+                        <td style="color: #dc3545; font-weight: bold;">不适配</td>
+                        <td>不推荐（无分红）</td>
+                        <td>股票回购进度</td>
+                    </tr>
+                    <tr>
+                        <td><strong>长期投资者</strong></td>
+                        <td style="color: #28a745; font-weight: bold;">较为适配</td>
+                        <td>分批建仓，关注长期竞争力</td>
+                        <td>市场份额、产品护城河、管理层执行力</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>关键监测指标</h3>
+            <div class="highlights">
+                <p><strong>季度重点关注:</strong></p>
+                <ul>
+                    <li>净存款增长是否维持在$150亿+/季度水平</li>
+                    <li>ARPU是否继续保持两位数增长</li>
+                    <li>Gold订阅渗透率能否突破15%、向20%迈进</li>
+                    <li>预测市场业务是否保持高增长（关注监管动态）</li>
+                    <li>国际业务（Bitstamp、WonderFi）的整合进展</li>
+                    <li>净利息收入在利率下降环境下的表现</li>
+                    <li>运营费用控制和利润率维持情况</li>
+                    <li>新产品（Banking、Cortex）的用户采纳度</li>
+                </ul>
+
+                <p><strong>年度战略关注:</strong></p>
+                <ul>
+                    <li>是否成功实现从"券商"到"金融超级应用"的转型</li>
+                    <li>国际化战略能否顺利推进，国际收入占比提升</li>
+                    <li>产品多元化能否降低交易收入依赖度（目标<50%）</li>
+                    <li>Rule of 40得分在增长放缓时能否保持60+</li>
+                    <li>市场份额在传统券商反击下是否继续扩大</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>分析师展望</h2>
+            <div class="highlights">
+                <ul>
+                    <li><strong>KeyBanc分析师</strong>将目标价从$135上调至$155,维持"买入"评级,看好产品更新和货币化趋势</li>
+                    <li><strong>市场共识</strong>认为公司有望在2026年继续保持强劲增长,但需关注利率下降对收入的影响</li>
+                    <li><strong>期权市场</strong>显示财报后股价波动率预期约±9.16%</li>
+                    <li><strong>股价表现</strong>: 2025年至今上涨超280%,成为标普500指数中表现最佳的成员</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="source">
+            <strong>数据来源:</strong> Robinhood Markets, Inc. 官方投资者关系网站、2025年第三季度财报新闻稿、CNBC、Bloomberg、Seeking Alpha等权威财经媒体报道<br>
+            <strong>报告编制:</strong> 基于2025年11月5日发布的第三季度财报及相关公开信息<br>
+            <strong>免责声明:</strong> 本报告仅供参考,不构成投资建议。投资者应根据自身情况做出独立判断。
+        </div>
+    </div>
+
+    <script>
+        // 设置Chart.js默认样式
+        Chart.defaults.font.family = "'DejaVu Sans', sans-serif";
+        Chart.defaults.color = '#36454f';
+
+        // 营收趋势图
+        const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+        new Chart(revenueCtx, {
+            type: 'line',
+            data: {
+                labels: ['2025 Q1', '2025 Q2', '2025 Q3'],
+                datasets: [{
+                    label: '营业收入 (百万美元)',
+                    data: [927, 989, 1274],
+                    borderColor: '#36454f',
+                    backgroundColor: 'rgba(54, 69, 79, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 6,
+                    pointBackgroundColor: '#36454f',
+                    pointBorderColor: '#ffffff',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            font: { size: 14, weight: 'bold' },
+                            padding: 15
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: '季度营业收入趋势',
+                        font: { size: 16, weight: 'bold' },
+                        padding: 20
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value + 'M';
+                            },
+                            font: { size: 12 }
+                        },
+                        grid: {
+                            color: '#d3d3d3',
+                            drawBorder: false
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            font: { size: 12 }
+                        }
+                    }
+                }
+            }
+        });
+
+        // EPS趋势图
+        const epsCtx = document.getElementById('epsChart').getContext('2d');
+        new Chart(epsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2025 Q1', '2025 Q2', '2025 Q3'],
+                datasets: [{
+                    label: '每股收益 (美元)',
+                    data: [0.37, 0.42, 0.61],
+                    backgroundColor: [
+                        'rgba(112, 128, 144, 0.8)',
+                        'rgba(112, 128, 144, 0.8)',
+                        'rgba(54, 69, 79, 0.9)'
+                    ],
+                    borderColor: [
+                        '#708090',
+                        '#708090',
+                        '#36454f'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            font: { size: 14, weight: 'bold' },
+                            padding: 15
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: '季度每股收益 (EPS) 趋势',
+                        font: { size: 16, weight: 'bold' },
+                        padding: 20
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value.toFixed(2);
+                            },
+                            font: { size: 12 }
+                        },
+                        grid: {
+                            color: '#d3d3d3',
+                            drawBorder: false
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            font: { size: 12 }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 收入结构饼图
+        const breakdownCtx = document.getElementById('revenueBreakdownChart').getContext('2d');
+        new Chart(breakdownCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['交易收入', '净利息收入', '其他收入'],
+                datasets: [{
+                    data: [730, 456, 88],
+                    backgroundColor: [
+                        '#36454f',
+                        '#708090',
+                        '#d3d3d3'
+                    ],
+                    borderWidth: 2,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            font: { size: 13 },
+                            padding: 20,
+                            generateLabels: function(chart) {
+                                const data = chart.data;
+                                return data.labels.map((label, i) => {
+                                    const value = data.datasets[0].data[i];
+                                    const total = data.datasets[0].data.reduce((a, b) => a + b, 0);
+                                    const percentage = ((value / total) * 100).toFixed(1);
+                                    return {
+                                        text: `${label}: $${value}M (${percentage}%)`,
+                                        fillStyle: data.datasets[0].backgroundColor[i],
+                                        hidden: false,
+                                        index: i
+                                    };
+                                });
+                            }
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: '第三季度收入构成 (总计: $12.74亿)',
+                        font: { size: 16, weight: 'bold' },
+                        padding: 20
+                    }
+                }
+            }
+        });
+
+        // 用户增长图
+        const userCtx = document.getElementById('userGrowthChart').getContext('2d');
+        new Chart(userCtx, {
+            type: 'line',
+            data: {
+                labels: ['2025 Q1', '2025 Q2', '2025 Q3'],
+                datasets: [
+                    {
+                        label: '活跃用户 (百万)',
+                        data: [24.0, 24.3, 26.8],
+                        borderColor: '#36454f',
+                        backgroundColor: 'rgba(54, 69, 79, 0.1)',
+                        borderWidth: 3,
+                        yAxisID: 'y',
+                        tension: 0.4,
+                        pointRadius: 6,
+                        pointBackgroundColor: '#36454f',
+                        fill: true
+                    },
+                    {
+                        label: 'Gold订阅用户 (百万)',
+                        data: [3.0, 3.5, 3.9],
+                        borderColor: '#708090',
+                        backgroundColor: 'rgba(112, 128, 144, 0.1)',
+                        borderWidth: 3,
+                        yAxisID: 'y',
+                        tension: 0.4,
+                        pointRadius: 6,
+                        pointBackgroundColor: '#708090',
+                        fill: true
+                    },
+                    {
+                        label: 'ARPU (美元)',
+                        data: [140, 151, 191],
+                        borderColor: '#d3d3d3',
+                        backgroundColor: 'rgba(211, 211, 211, 0.2)',
+                        borderWidth: 3,
+                        borderDash: [5, 5],
+                        yAxisID: 'y1',
+                        tension: 0.4,
+                        pointRadius: 6,
+                        pointBackgroundColor: '#d3d3d3'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            font: { size: 13 },
+                            padding: 15,
+                            usePointStyle: true
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: '用户增长与收入指标',
+                        font: { size: 16, weight: 'bold' },
+                        padding: 20
+                    }
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: '用户数 (百万)',
+                            font: { size: 13, weight: 'bold' }
+                        },
+                        ticks: {
+                            font: { size: 11 }
+                        },
+                        grid: {
+                            color: '#d3d3d3',
+                            drawBorder: false
+                        }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: {
+                            display: true,
+                            text: 'ARPU (美元)',
+                            font: { size: 13, weight: 'bold' }
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value;
+                            },
+                            font: { size: 11 }
+                        },
+                        grid: {
+                            drawOnChartArea: false
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            font: { size: 12 }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Rule of 40 趋势图
+        const ruleOf40Ctx = document.getElementById('ruleOf40Chart').getContext('2d');
+        new Chart(ruleOf40Ctx, {
+            type: 'bar',
+            data: {
+                labels: ['2025 Q1', '2025 Q2', '2025 Q3'],
+                datasets: [
+                    {
+                        label: '收入增长率 (%)',
+                        data: [50, 45, 100],
+                        backgroundColor: 'rgba(54, 69, 79, 0.8)',
+                        borderColor: '#36454f',
+                        borderWidth: 2,
+                        stack: 'Stack 0'
+                    },
+                    {
+                        label: '净利润率 (%)',
+                        data: [36.2, 38.9, 43.7],
+                        backgroundColor: 'rgba(112, 128, 144, 0.8)',
+                        borderColor: '#708090',
+                        borderWidth: 2,
+                        stack: 'Stack 0'
+                    },
+                    {
+                        label: 'Rule of 40 基准线',
+                        data: [40, 40, 40],
+                        type: 'line',
+                        borderColor: '#dc3545',
+                        borderWidth: 3,
+                        borderDash: [10, 5],
+                        fill: false,
+                        pointRadius: 0,
+                        tension: 0
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            font: { size: 13 },
+                            padding: 15,
+                            usePointStyle: true
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Rule of 40 趋势分析',
+                        font: { size: 16, weight: 'bold' },
+                        padding: 20
+                    },
+                    tooltip: {
+                        callbacks: {
+                            afterBody: function(context) {
+                                if (context[0].dataIndex >= 0) {
+                                    const idx = context[0].dataIndex;
+                                    const growth = [50, 45, 100][idx];
+                                    const margin = [36.2, 38.9, 43.7][idx];
+                                    const total = growth + margin;
+                                    return `Rule of 40得分: ${total.toFixed(1)}%`;
+                                }
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 160,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            },
+                            font: { size: 12 }
+                        },
+                        grid: {
+                            color: '#d3d3d3',
+                            drawBorder: false
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            font: { size: 12 }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 盈利能力趋势图
+        const profitabilityCtx = document.getElementById('profitabilityChart').getContext('2d');
+        new Chart(profitabilityCtx, {
+            type: 'line',
+            data: {
+                labels: ['2025 Q1', '2025 Q2', '2025 Q3'],
+                datasets: [
+                    {
+                        label: '净利润率 (%)',
+                        data: [36.2, 38.9, 43.7],
+                        borderColor: '#36454f',
+                        backgroundColor: 'rgba(54, 69, 79, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 6,
+                        pointBackgroundColor: '#36454f',
+                        pointBorderColor: '#ffffff',
+                        pointBorderWidth: 2
+                    },
+                    {
+                        label: '毛利率 (%)',
+                        data: [82, 83, 84],
+                        borderColor: '#708090',
+                        backgroundColor: 'rgba(112, 128, 144, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 6,
+                        pointBackgroundColor: '#708090',
+                        pointBorderColor: '#ffffff',
+                        pointBorderWidth: 2
+                    },
+                    {
+                        label: '运营利润率 (%)',
+                        data: [40, 43, 48],
+                        borderColor: '#d3d3d3',
+                        backgroundColor: 'rgba(211, 211, 211, 0.1)',
+                        borderWidth: 3,
+                        borderDash: [5, 5],
+                        fill: false,
+                        tension: 0.4,
+                        pointRadius: 6,
+                        pointBackgroundColor: '#d3d3d3',
+                        pointBorderColor: '#ffffff',
+                        pointBorderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            font: { size: 13 },
+                            padding: 15,
+                            usePointStyle: true
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: '利润率趋势分析',
+                        font: { size: 16, weight: 'bold' },
+                        padding: 20
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            },
+                            font: { size: 12 }
+                        },
+                        grid: {
+                            color: '#d3d3d3',
+                            drawBorder: false
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            font: { size: 12 }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 收入构成趋势图
+        const revenueCompositionTrendCtx = document.getElementById('revenueCompositionTrendChart').getContext('2d');
+        new Chart(revenueCompositionTrendCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2025 Q1', '2025 Q2', '2025 Q3'],
+                datasets: [
+                    {
+                        label: '交易收入',
+                        data: [520, 570, 730],
+                        backgroundColor: 'rgba(54, 69, 79, 0.9)',
+                        borderColor: '#36454f',
+                        borderWidth: 2
+                    },
+                    {
+                        label: '净利息收入',
+                        data: [340, 360, 456],
+                        backgroundColor: 'rgba(112, 128, 144, 0.9)',
+                        borderColor: '#708090',
+                        borderWidth: 2
+                    },
+                    {
+                        label: '其他收入',
+                        data: [67, 59, 88],
+                        backgroundColor: 'rgba(211, 211, 211, 0.9)',
+                        borderColor: '#d3d3d3',
+                        borderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            font: { size: 13 },
+                            padding: 15,
+                            usePointStyle: true
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: '季度收入构成趋势 (百万美元)',
+                        font: { size: 16, weight: 'bold' },
+                        padding: 20
+                    },
+                    tooltip: {
+                        callbacks: {
+                            footer: function(context) {
+                                let sum = 0;
+                                context.forEach(item => sum += item.parsed.y);
+                                return '总计: $' + sum + 'M';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        stacked: true,
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value + 'M';
+                            },
+                            font: { size: 12 }
+                        },
+                        grid: {
+                            color: '#d3d3d3',
+                            drawBorder: false
+                        }
+                    },
+                    x: {
+                        stacked: true,
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            font: { size: 12 }
+                        }
+                    }
+                }
+            }
+        });
+
+        // ARPU vs Users 对比图
+        const arpuVsUsersCtx = document.getElementById('arpuVsUsersChart').getContext('2d');
+        new Chart(arpuVsUsersCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2025 Q1', '2025 Q2', '2025 Q3'],
+                datasets: [
+                    {
+                        label: '活跃用户 (百万)',
+                        data: [24.0, 24.3, 26.8],
+                        backgroundColor: 'rgba(54, 69, 79, 0.7)',
+                        borderColor: '#36454f',
+                        borderWidth: 2,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: 'ARPU (美元)',
+                        data: [140, 151, 191],
+                        type: 'line',
+                        borderColor: '#708090',
+                        backgroundColor: 'rgba(112, 128, 144, 0.1)',
+                        borderWidth: 4,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 8,
+                        pointBackgroundColor: '#708090',
+                        pointBorderColor: '#ffffff',
+                        pointBorderWidth: 3,
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            font: { size: 13 },
+                            padding: 15,
+                            usePointStyle: true
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: '用户数量与平均收入趋势',
+                        font: { size: 16, weight: 'bold' },
+                        padding: 20
+                    }
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: '活跃用户 (百万)',
+                            font: { size: 13, weight: 'bold' }
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return value + 'M';
+                            },
+                            font: { size: 11 }
+                        },
+                        grid: {
+                            color: '#d3d3d3',
+                            drawBorder: false
+                        }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'ARPU (美元)',
+                            font: { size: 13, weight: 'bold' }
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value;
+                            },
+                            font: { size: 11 }
+                        },
+                        grid: {
+                            drawOnChartArea: false
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            font: { size: 12 }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
